@@ -1,0 +1,33 @@
+{
+  "name": "whaler-hosts-plugin",
+  "description": "Whaler hosts plugin",
+  "author": {
+    "name": "Sergei Vizel",
+    "email": "sergei.vizel@gmail.com",
+    "url": "https://github.com/cravler"
+  },
+  "homepage": "https://github.com/whaler/whaler-hosts-plugin",
+  "keywords": [
+    "whaler",
+    "hosts",
+    "plugin"
+  ],
+  "license": "MIT",
+  "version": "0.1.0",
+  "main": "index.js",
+  "whaler-plugin": true,
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "x-console": "^0.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:whaler/whaler-hosts-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/whaler/whaler-hosts-plugin/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
