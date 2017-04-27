@@ -1,12 +1,14 @@
 # Whaler hosts plugin
 
+This plugin add ability to call app services by domain name `[service].[app].whaler.lh`
+
 ## Install
 
 ```sh
 $ whaler plugins:install whaler-hosts-plugin
 ```
 
-> **NB!** After plugin install, you need start at least one service, to enable plugin.
+> **NB!** After plugin install, you need start at least one service, to enable it.
 
 ## Get IP
 
