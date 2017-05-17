@@ -28,17 +28,6 @@ function exports(whaler) {
 // PRIVATE
 
 /**
- * @param ip
- * @returns {string}
- */
-function getNextIPV4Address(ip) {
-    const arr = ip.split('.');
-    arr[3] = parseInt(arr[3]) + 1;
-
-    return arr.join('.');
-}
-
-/**
  * @param whaler
  */
 function* touchHosts(whaler) {
@@ -112,7 +101,10 @@ function* touchHosts(whaler) {
         try {
             whalerHostsNetwork = yield docker.createNetwork.$call(docker, {
                 'Name': 'whaler_hosts_nw',
-                'CheckDuplicate': true
+                'CheckDuplicate': true,
+                'IPAM': {
+                    'Driver': 'default'
+                }
             });
         } catch (e) {
             whalerHostsNetwork = docker.getNetwork('whaler_hosts_nw');
@@ -140,12 +132,7 @@ function* touchHosts(whaler) {
             const nwInfo = yield whalerHostsNetwork.inspect.$call(whalerHostsNetwork);
 
             yield whalerHostsNetwork.connect.$call(whalerHostsNetwork, {
-                'Container': container.id,
-                'EndpointConfig': {
-                    'IPAMConfig': {
-                        'IPv4Address': getNextIPV4Address(nwInfo['IPAM']['Config'][0]['Gateway'])
-                    }
-                }
+                'Container': container.id
             });
         }
     }
