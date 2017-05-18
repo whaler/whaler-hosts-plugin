@@ -101,10 +101,7 @@ function* touchHosts(whaler) {
         try {
             whalerHostsNetwork = yield docker.createNetwork.$call(docker, {
                 'Name': 'whaler_hosts_nw',
-                'CheckDuplicate': true,
-                'IPAM': {
-                    'Driver': 'default'
-                }
+                'CheckDuplicate': true
             });
         } catch (e) {
             whalerHostsNetwork = docker.getNetwork('whaler_hosts_nw');
