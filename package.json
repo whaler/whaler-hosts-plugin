@@ -13,12 +13,11 @@
     "plugin"
   ],
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "index.js",
   "whaler-plugin": true,
   "dependencies": {
-    "mkdirp": "^0.5.1",
-    "x-console": "^0.1.2"
+    "mkdirp": "^0.5.1"
   },
   "repository": {
     "type": "git",
