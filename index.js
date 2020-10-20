@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const util = require('util');
-const mkdirp = util.promisify(require('mkdirp'));
+const mkdirp = require('mkdirp');
 const fsWriteFile = util.promisify(fs.writeFile);
 
 module.exports = exports;
@@ -131,7 +131,8 @@ async function exports (whaler) {
         }
 
         if (started) {
-            await container.restart();
+            //await container.restart();
+            await container.kill({ signal: 'HUP' });
 
         } else {
             await container.start();
