@@ -5,7 +5,7 @@ This plugin add ability to call app services by domain name `[service].[app].wha
 ## Install
 
 ```sh
-$ whaler plugins:install whaler-hosts-plugin
+whaler plugins:install whaler-hosts-plugin
 ```
 
 > **NB!** After plugin install, you need start at least one service, to enable it.
@@ -13,7 +13,7 @@ $ whaler plugins:install whaler-hosts-plugin
 ## Get IP
 
 ```sh
-$ docker inspect whaler_hosts --format '{{.NetworkSettings.Networks.whaler_hosts_nw.IPAddress}}'
+docker inspect whaler_hosts --format '{{.NetworkSettings.Networks.whaler_hosts_nw.IPAddress}}'
 ```
 
 ## Dnsmasq
@@ -23,7 +23,7 @@ $ docker inspect whaler_hosts --format '{{.NetworkSettings.Networks.whaler_hosts
 Install dnsmasq:
 
 ```sh
-$ sudo apt-get install dnsmasq
+sudo apt-get install dnsmasq
 ```
 
 Update config file `/etc/dnsmasq.conf` with following line:
