@@ -113,6 +113,7 @@ async function exports (whaler) {
                         '/var/lib/whaler/plugins/dnsmasq/hosts:/etc/dnsmasq.hosts',
                         '/var/lib/whaler/plugins/dnsmasq/conf:/etc/dnsmasq.conf'
                     ],
+                    'Dns': (process.env.WHALER_HOSTS_PLUGIN_DNS || '').split(',').filter(value => value),
                     'RestartPolicy': {
                         'Name': 'always'
                     }
