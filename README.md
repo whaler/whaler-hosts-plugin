@@ -1,6 +1,6 @@
 # Whaler hosts plugin
 
-This plugin add ability to call app services by domain name `[service].[app].whaler.lh`
+This plugin adds the ability to call app services by domain name `[service].[app].whaler.lh`
 
 ## Install
 
@@ -8,7 +8,7 @@ This plugin add ability to call app services by domain name `[service].[app].wha
 whaler plugins:install whaler-hosts-plugin
 ```
 
-> **NB!** After plugin install, you need start at least one service, to enable it.
+> **NB!** After installing the plugin, you need start at least one service, to enable it.
 
 ## Get IP
 
@@ -16,25 +16,41 @@ whaler plugins:install whaler-hosts-plugin
 docker inspect whaler_hosts --format '{{.NetworkSettings.Networks.whaler_hosts_nw.IPAddress}}'
 ```
 
-## Dnsmasq
+## Configure `systemd-resolved` to use custom DNS nameserver
 
-> **NB!** Dnsmasq step is pure optional, but then you need manually add records to `/etc/hosts` file.
+> **NB!** Don't forget to replace `<IP>` with `whaler_hosts` container IP.
 
-Install dnsmasq:
+Create `systemd-resolved` config file:
+
+```conf
+# /etc/systemd/resolved.conf.d/whaler-hosts.conf
+[Resolve]
+DNS=<IP>
+Domains=~whaler.lh
+```
+
+Restart `systemd-resolved`:
 
 ```sh
-sudo apt-get install dnsmasq
+sudo systemctl restart systemd-resolved
 ```
 
-Update config file `/etc/dnsmasq.conf` with following line:
+## Configure `docker daemon` to use custom DNS nameserver
 
-> **NB!** If you have `address=/whaler.lh/[IP], remove it.`
+Update `docker daemon` config file:
 
+```json
+# /etc/docker/daemon.json
+{
+    "dns": ["8.8.8.8"]
+}
 ```
-server=/whaler.lh/[IP]
-```
 
-> **NB!** Don't forget to replace [IP] with `whaler_hosts` container IP.
+Restart `docker`:
+
+```sh
+sudo systemctl restart docker
+```
 
 ## License
 
